@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recomienda una Playlist</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1db954, #1ed760);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 450px;
+      padding: 30px 40px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      font-weight: 600;
+      font-size: 2rem;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 8px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-align: left;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      background: #121212;
+      color: #fff;
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    select:hover, select:focus {
+      box-shadow: inset 0 0 10px #1db954;
+      outline: none;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 0;
+      width: 100%;
+      background: #1db954;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(29, 185, 84, 0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      background: #17a84b;
+      box-shadow: 0 6px 20px rgba(23, 168, 75, 0.9);
+    }
+
+    #recomendacion {
+      margin-top: 35px;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      background: #121212;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #1db954;
+      min-height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #recomendacion a {
+      color: #1ed760;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    #recomendacion a:hover {
+      color: #1db954;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px 25px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      button {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>¿Qué playlist necesitas hoy?</h1>
+    <form id="formPlaylist">
+      <label for="estado">¿Cómo te sientes?</label>
+      <select id="estado">
+        <option value="feliz">Feliz</option>
+        <option value="triste">Triste</option>
+        <option value="enojado">Enojado</option>
+        <option value="relajado">Relajado</option>
+        <option value="enamorado">Enamorado</option>
+        <option value="motivado">Motivado</option>
+        <option value="tranquilo">Tranquilo</option>
+      </select>
+
+      <label for="genero">¿Qué género te gusta más?</label>
+      <select id="genero">
+        <option value="pop">Pop</option>
+        <option value="rock">Rock</option>
+        <option value="reggaeton">Reggaetón</option>
+        <option value="lofi">Lo-Fi</option>
+        <option value="electronico">Electrónico</option>
+        <option value="rancheras">Rancheras</option>
+      </select>
+
+      <label for="actividad">¿Qué estás haciendo?</label>
+      <select id="actividad">
+        <option value="estudiar">Estudiando</option>
+        <option value="ejercicio">Haciendo ejercicio</option>
+        <option value="viaje">Viajando</option>
+        <option value="nada">Nada en especial</option>
+        <option value="fiesta">En una fiesta</option>
+      </select>
+
+      <button type="button" onclick="recomendarPlaylist()">Ver recomendación</button>
+    </form>
+
+    <div id="recomendacion"></div>
+  </div>
+
+  <script>
+    function recomendarPlaylist() {
+      const estado = document.getElementById("estado").value;
+      const genero = document.getElementById("genero").value;
+      const actividad = document.getElementById("actividad").value;
+
+      let playlist = "";
+
+      if (estado === "feliz" && genero === "pop" && actividad === "viaje") {
+        playlist = `🎉 <strong>Playlist Pop</strong><br><a href="https://open.spotify.com/playlist/42lLY2UJ1Ti0BOnWgxzJXG?si=1f87a9af0cb54141" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "enamorado" && genero === "pop" && actividad === "nada") {
+        playlist = `❤️ <strong>Playlist Amor</strong><br><a href="https://open.spotify.com/playlist/7BTDoxlp1GPr38uFN0o65y?si=6c111af4462e400d" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "feliz" && genero === "reggaeton" && actividad === "fiesta") {
+        playlist = `☀️ <strong>Playlist Verano</strong><br><a href="https://open.spotify.com/playlist/1scUDpX8DUDLqSsfvnLMtu?si=d8cb6ee807464dcf" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "triste" && genero === "pop" && actividad === "estudiar") {
+        playlist = `🎼 <strong>Playlist Baladas</strong><br><a href="https://open.spotify.com/playlist/6Y4D6DdQ9hmL1VOnrNUchf?si=69b1304d60fc464d" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "motivado" && genero === "reggaeton" && actividad === "ejercicio") {
+        playlist = `🏋️‍♂️ <strong>Playlist Deportivo</strong><br><a href="https://open.spotify.com/playlist/0lo2IVcPKWhU1CdiLjLKvJ?si=9e400036efff4aec" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "tranquilo" && genero === "rancheras" && actividad === "nada") {
+        playlist = `🤠 <strong>Playlist Rancheras</strong><br><a href="https://open.spotify.com/playlist/6eZMg5ysgTfd4ZjpplEvqd?si=7b30f831468a4bba" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "enojado" && genero === "rock" && actividad === "ejercicio") {
+        playlist = `⚔️ <strong>Playlist Bélicas</strong><br><a href="https://open.spotify.com/playlist/7Aqud7KwLg8pBv0IXEkQdd?si=6a83ddef5ece4d86" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "feliz" && genero === "electronico" && actividad === "fiesta") {
+        playlist = `🎧 <strong>Playlist Electrónico</strong><br><a href="https://open.spotify.com/playlist/3An9oL67gnZEBKk8SiZdhO?si=cf6376d49e0448d0" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else if (estado === "triste" && genero === "lofi" && actividad === "nada") {
+        playlist = `💔 <strong>Playlist Desamor</strong><br><a href="https://open.spotify.com/playlist/78ufG9XW3KCq7JKDfsXHe6?si=5a4b752ca0c9441d" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>`;
+      } else {
+        playlist = "🎧 No tenemos una playlist exacta para esa combinación, pero explora las opciones y encuentra tu ritmo.";
+      }
+
+      document.getElementById("recomendacion").innerHTML = playlist;
+    }
+  </script>
+</body>
+</html>
